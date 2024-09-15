@@ -35,13 +35,13 @@ export class TaskService {
     this.saveTasksToLocalStorage(currentTasks);
   }
 
-  deleteTask(id: number): void {
+  deleteTask(id: string): void {
     const updatedTasks = this.tasksSubject.value.filter(task => task.id !== id);
     this.tasksSubject.next(updatedTasks);
     this.saveTasksToLocalStorage(updatedTasks);
   }
 
-  toggleTaskCompletion(id: number): void {
+  toggleTaskCompletion(id: string): void {
     const updatedTasks = this.tasksSubject.value.map(task => 
       task.id === id ? { ...task, completed: !task.completed } : task
     );

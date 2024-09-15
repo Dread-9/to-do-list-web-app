@@ -1,0 +1,17 @@
+.add-task-card {
+    margin: 16px;
+    padding: 16px;
+    border-radius: 12px;
+    background-color: #fff5f5;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.full-width {
+    width: 100%;
+    margin-bottom: 16px;
+}
+
+.card-actions {
+    display: flex;
+    justify-content: flex-end;
+}

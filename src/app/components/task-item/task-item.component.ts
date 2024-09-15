@@ -9,6 +9,7 @@ import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { CommonModule } from '@angular/common';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-task-item',
@@ -30,15 +31,15 @@ import { CommonModule } from '@angular/common';
 export class TaskItemComponent {
 
   @Input() task!: Task;
-  @Output() toggleComplete = new EventEmitter<number>();
-  @Output() deleteTask = new EventEmitter<number>();
+  @Output() toggleComplete = new EventEmitter<string>();
+  @Output() deleteTask = new EventEmitter<string>();
   @Output() editTask = new EventEmitter<Task>();
 
   isEditing = false;
   taskTitle: string = '';
   taskDescription: string = '';
 
-  constructor(){
+  constructor(private snackBar: MatSnackBar){
 
   }
 
@@ -53,6 +54,11 @@ export class TaskItemComponent {
 
   onDeleteTask() {
     this.deleteTask.emit(this.task.id);
+    this.snackBar.open('Tarea Eliminada!','Cerrar',{
+      duration: 3000,
+      horizontalPosition: 'right',
+      verticalPosition:'top',
+    })
   }
 
   onEditTask() {

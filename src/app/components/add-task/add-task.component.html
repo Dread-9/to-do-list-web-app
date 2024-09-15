@@ -1,13 +1,19 @@
-<mat-card>
-    <mat-form-field appearance="fill">
-        <mat-label>Titulo</mat-label>
-        <input matInput placeholder="Titulo de la tarea" [(ngModel)]="taskTitle" >
-    </mat-form-field>
-    <mat-form-field appearance="fill">
-        <mat-label>Descripcion</mat-label>
-        <textarea matInput placeholder="Descripcion de la tarea" [(ngModel)]="taskDescrptions" ></textarea>
-    </mat-form-field>
-    <button mat-raised-button (click)="addTask()">
-        Añadir Tarea
-    </button>
+<mat-card class="add-task-card">
+    <mat-card-header>
+      <mat-card-title>Crear Nueva Tarea</mat-card-title>
+    </mat-card-header>
+  
+    <mat-card-content>
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Título</mat-label>
+        <input matInput placeholder="Escribe el título de la tarea" [(ngModel)]="taskTitle">
+      </mat-form-field>
+  
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Descripción</mat-label>
+        <textarea matInput placeholder="Escribe la descripción de la tarea" [(ngModel)]="taskDescrptions"></textarea>
+      </mat-form-field>
+    </mat-card-content>
+    <button mat-raised-button color="secundary" (click)="addTask()">Añadir Tarea</button>
 </mat-card>
+  

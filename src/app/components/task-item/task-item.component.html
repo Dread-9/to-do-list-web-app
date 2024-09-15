@@ -1,4 +1,4 @@
-<mat-card color="primary">
+<mat-card class="task-card">
   <mat-card-header>
     <mat-card-title *ngIf="!isEditing">{{ task.title }}</mat-card-title>
     <mat-form-field *ngIf="isEditing">
@@ -8,13 +8,11 @@
   <mat-card-content>
     <p *ngIf="!isEditing">{{ task.descriptions }}</p>
     <mat-form-field *ngIf="isEditing">
-      <input matInput [(ngModel)]="taskDescription" />
+      <textarea matInput [(ngModel)]="taskDescription"></textarea>
     </mat-form-field>
   </mat-card-content>
-  <mat-card-actions>
-    <mat-checkbox [checked]="task.completed" (change)="onToggleComplete()">
-      Completada
-    </mat-checkbox>
+  <div class="card-actions">
+    <mat-checkbox [(ngModel)]="task.completed" class="task-checkbox"></mat-checkbox>
     <button *ngIf="!isEditing" mat-icon-button (click)="onEditTask()">
       <mat-icon>edit</mat-icon>
     </button>
@@ -24,5 +22,5 @@
     <button mat-icon-button color="warn" (click)="onDeleteTask()">
       <mat-icon>delete</mat-icon>
     </button>
-  </mat-card-actions>
+  </div>
 </mat-card>

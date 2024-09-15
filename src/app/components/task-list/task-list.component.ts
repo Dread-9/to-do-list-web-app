@@ -34,11 +34,11 @@ export class TaskListComponent {
 
   constructor(private taskService: TaskService) {}
 
-  toggleComplete(id: number) {
+  toggleComplete(id: string) {
     this.taskService.toggleTaskCompletion(id);
   }
 
-  deleteTask(id: number) {
+  deleteTask(id: string) {
     this.taskService.deleteTask(id);
   }
 
