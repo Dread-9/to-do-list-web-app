@@ -24,13 +24,25 @@ import { CommonModule } from '@angular/common';
   styleUrl: './add-task.component.scss'
 })
 export class AddTaskComponent {
-  taskTitle: String =''
+  taskTitle: string =''
+  taskDescrptions: string =''
 
-  constructor(TaskService:TaskService){
+  constructor( private taskService:TaskService){
 
   }
 
   addTask(){
-    
+    if(this.taskTitle.trim()){
+      const newTask = {
+        id: Date.now(),
+        title: this.taskTitle,
+        descriptions:this.taskDescrptions,
+        completed:false
+      };
+      this.taskService.addTask(newTask);
+      this.taskTitle = '';
+      this.taskDescrptions = '';
+
+    }
   }
 }

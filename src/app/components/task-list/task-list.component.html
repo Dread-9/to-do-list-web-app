@@ -1,9 +1,9 @@
-<mat-toolbar>Lista</mat-toolbar>
 <mat-list>
-    <mat-list-item>
-        <mat-checkbox></mat-checkbox>
-        <button>
-            <mat-icon></mat-icon>
-        </button>
-    </mat-list-item>
+    <app-task-item 
+      *ngFor="let task of tasks$ | async" 
+      [task]="task" 
+      (toggleComplete)="toggleComplete($event)" 
+      (deleteTask)="deleteTask($event)" 
+      (editTask)="editTask($event)">
+    </app-task-item>
 </mat-list>

@@ -6,36 +6,46 @@ import { Task } from '../interface/task.module';
   providedIn: 'root'
 })
 export class TaskService {
-  taskSubject:BehaviorSubject<Task[]> = new BehaviorSubject<Task[]>(this.loadTaskStorage());
-  tasks$:Observable<Task[]> = this.taskSubject.asObservable();
+  private tasksSubject: BehaviorSubject<Task[]> = new BehaviorSubject<Task[]>(this.loadTasksFromLocalStorage());
+  tasks$: Observable<Task[]> = this.tasksSubject.asObservable();
 
-  constructor() { }
+  constructor() {}
 
-  loadTaskStorage():Task[] {
+  private loadTasksFromLocalStorage(): Task[] {
     const tasks = localStorage.getItem('tasks');
-    return tasks ? JSON.parse(tasks):[]
+    return tasks ? JSON.parse(tasks) : [];
   }
 
-  saveTaskStorage(tasks:Task[]):void{
+  private saveTasksToLocalStorage(tasks: Task[]): void {
     localStorage.setItem('tasks', JSON.stringify(tasks));
   }
 
-  getTask(){
-
+  addTask(task: Task): void {
+    const currentTasks = this.tasksSubject.value;
+    const updatedTasks = [...currentTasks, task];
+    this.tasksSubject.next(updatedTasks);
+    this.saveTasksToLocalStorage(updatedTasks);
   }
 
-  addTask(task:Task):void{
-
+  editTask(updatedTask: Task): void {
+    const currentTasks = this.tasksSubject.value.map(task => 
+      task.id === updatedTask.id ? updatedTask : task
+    );
+    this.tasksSubject.next(currentTasks);
+    this.saveTasksToLocalStorage(currentTasks);
   }
 
-  editTask(){
-
+  deleteTask(id: number): void {
+    const updatedTasks = this.tasksSubject.value.filter(task => task.id !== id);
+    this.tasksSubject.next(updatedTasks);
+    this.saveTasksToLocalStorage(updatedTasks);
   }
 
-  deleteTask(){
-
+  toggleTaskCompletion(id: number): void {
+    const updatedTasks = this.tasksSubject.value.map(task => 
+      task.id === id ? { ...task, completed: !task.completed } : task
+    );
+    this.tasksSubject.next(updatedTasks);
+    this.saveTasksToLocalStorage(updatedTasks);
   }
-
-
-
 }
