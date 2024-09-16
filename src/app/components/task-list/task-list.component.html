@@ -1,0 +1,16 @@
+<ng-container *ngIf="(tasks$ | async) as tasks; else noTasks">
+  <h2 class="task-list-title" *ngIf="tasks.length > 0">Tareas por completar</h2>
+  <mat-list *ngIf="tasks.length > 0">
+    <app-task-item 
+      *ngFor="let task of tasks" 
+      [task]="task" 
+      (toggleComplete)="toggleComplete($event)" 
+      (deleteTask)="deleteTask($event)" 
+      (editTask)="editTask($event)">
+    </app-task-item>
+  </mat-list>
+</ng-container>
+
+<ng-template #noTasks>
+  <p class="no-tasks-message">¡No tienes tareas pendientes!</p>
+</ng-template>

@@ -1,0 +1,26 @@
+<mat-card class="task-card" [ngClass]="{ 'completed-task': task.completed }">
+  <mat-card-header>
+    <mat-card-title *ngIf="!isEditing">{{ task.title }}</mat-card-title>
+    <mat-form-field *ngIf="isEditing">
+      <input matInput placeholder="Escribe el título de la tarea" [(ngModel)]="taskTitle">
+    </mat-form-field>
+  </mat-card-header>
+  <mat-card-content>
+    <p *ngIf="!isEditing" class="task-description">{{ task.descriptions }}</p>
+    <mat-form-field *ngIf="isEditing">
+      <textarea matInput [(ngModel)]="taskDescription"></textarea>
+    </mat-form-field>
+  </mat-card-content>
+  <div class="card-actions">
+    <mat-checkbox [(ngModel)]="task.completed" class="task-checkbox"></mat-checkbox>
+    <button *ngIf="!isEditing" mat-icon-button (click)="onEditTask()">
+      <mat-icon>edit</mat-icon>
+    </button>
+    <button *ngIf="isEditing" mat-icon-button (click)="onSaveEdit()">
+      <mat-icon>save</mat-icon>
+    </button>
+    <button mat-icon-button color="warn" (click)="onDeleteTask()">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </div>
+</mat-card>

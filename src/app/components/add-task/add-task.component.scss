@@ -1,0 +1,41 @@
+.add-task-card {
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: none;
+  border: 1px solid #e0e0e0;
+  background-color: #fafafa;
+
+  mat-card-header {
+    mat-card-title {
+      font-weight: 500;
+      font-size: 1.4rem;
+      color: #333;
+    }
+  }
+
+  mat-form-field {
+    width: 100%;
+    margin-bottom: 16px;
+
+    mat-label {
+      font-size: 0.9rem;
+      color: #000000;
+    }
+
+    input, textarea {
+      font-size: 1rem;
+      padding: 8px;
+      border-radius: 4px;
+    }
+  }
+
+  mat-card-actions {
+    display: flex;
+    justify-content: flex-end;
+    padding: 0;
+  }
+}
+
+.custom-input {
+  color: #000000 !important;
+}
