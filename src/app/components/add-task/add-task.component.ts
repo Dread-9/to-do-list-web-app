@@ -26,8 +26,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrl: './add-task.component.scss'
 })
 export class AddTaskComponent {
-  taskTitle: string =''
-  taskDescrptions: string =''
+  taskTitle =  ''
+  taskDescrptions = ''
 
   constructor(
     private taskService:TaskService,

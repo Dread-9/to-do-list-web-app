@@ -9,7 +9,7 @@ export class TaskService {
   private tasksSubject: BehaviorSubject<Task[]> = new BehaviorSubject<Task[]>(this.loadTasksFromLocalStorage());
   tasks$: Observable<Task[]> = this.tasksSubject.asObservable();
 
-  constructor() {}
+  constructor(){ }
 
   private loadTasksFromLocalStorage(): Task[] {
     const tasks = localStorage.getItem('tasks');

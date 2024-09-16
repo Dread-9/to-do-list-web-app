@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
 import { MatListModule } from '@angular/material/list';
 import { MatListItem } from '@angular/material/list';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -28,7 +28,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   templateUrl: './task-item.component.html',
   styleUrl: './task-item.component.scss'
 })
-export class TaskItemComponent {
+export class TaskItemComponent implements OnInit {
 
   @Input() task!: Task;
   @Output() toggleComplete = new EventEmitter<string>();
@@ -36,8 +36,8 @@ export class TaskItemComponent {
   @Output() editTask = new EventEmitter<Task>();
 
   isEditing = false;
-  taskTitle: string = '';
-  taskDescription: string = '';
+  taskTitle = '';
+  taskDescription = '';
 
   constructor(private snackBar: MatSnackBar){
 
@@ -69,7 +69,11 @@ export class TaskItemComponent {
     if (this.taskTitle.trim() && this.taskDescription.trim()) {
       this.editTask.emit({ ...this.task, title: this.taskTitle, descriptions: this.taskDescription });
       this.isEditing = false;
+      this.snackBar.open('Tarea actualizada!','Cerrar',{
+        duration: 3000,
+        horizontalPosition: 'right',
+        verticalPosition:'top',
+      })
     }
   }
-
 }
